@@ -4,10 +4,13 @@
     <PublishUrlHistory>publish\</PublishUrlHistory>
     <InstallUrlHistory>https://raw.githubusercontent.com/redincorporated/Red.PointOfSale/develop/Red.PointOfSale/publish/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>https://raw.githubusercontent.com/redincorporated/Red.PointOfSale/develop/Red.PointOfSale/publish/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
 </Project>
