@@ -27,7 +27,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/redincorporated/Red.PointOfSale/develop/Red.PointOfSale/publish/</InstallUrl>
     <UpdateUrl>https://raw.githubusercontent.com/redincorporated/Red.PointOfSale/develop/Red.PointOfSale/publish/</UpdateUrl>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ProductName>Point of Sale</ProductName>
+    <PublisherName>Red Incorporated</PublisherName>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
