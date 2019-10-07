@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Red.PointOfSale
+{
+    public partial class MainForm : Form
+    {
+        static MainForm instance = new MainForm();
+
+        public static MainForm Instance {
+            get { return instance; }
+        }
+
+        MainForm()
+        {
+            InitializeComponent();
+        }
+
+        public void AddChild(Control control)
+        {
+            panel1.Controls.Clear();
+            control.Dock = DockStyle.Fill;
+            panel1.Controls.Add(control);
+        }
+    }
+}
