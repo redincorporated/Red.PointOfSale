@@ -29,7 +29,7 @@
     <UpdateUrl>https://raw.githubusercontent.com/redincorporated/Red.PointOfSale/develop/Red.PointOfSale/publish/</UpdateUrl>
     <ProductName>Point of Sale</ProductName>
     <PublisherName>Red Incorporated</PublisherName>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -118,11 +118,23 @@
     <Compile Include="Gui\ConfigurationPane.Designer.cs">
       <DependentUpon>ConfigurationPane.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gui\DepartmentsPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\DepartmentsPane.Designer.cs">
+      <DependentUpon>DepartmentsPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gui\LoginPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Gui\LoginPane.Designer.cs">
       <DependentUpon>LoginPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\NumPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\NumPane.Designer.cs">
+      <DependentUpon>NumPane.cs</DependentUpon>
     </Compile>
     <Compile Include="Gui\SalesReceiptPane.cs">
       <SubType>UserControl</SubType>
@@ -131,6 +143,7 @@
       <DependentUpon>SalesReceiptPane.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ConvertHelper.cs" />
+    <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,10 +161,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IItemRepository.cs" />
     <Compile Include="Repositories\SQLite\BaseSQLiteRepository.cs" />
+    <Compile Include="Repositories\SQLite\SQLiteItemDepartmentRepository.cs" />
     <Compile Include="Repositories\SQLite\SQLiteItemRepository.cs" />
     <Compile Include="Repositories\SQLite\SQLiteSalesReceiptRepository.cs" />
     <Compile Include="Repositories\SQLite\SQLiteUserRepository.cs" />
     <Compile Include="Services\Service.cs" />
+    <EmbeddedResource Include="Gui\ConfigurationPane.resx">
+      <DependentUpon>ConfigurationPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\DepartmentsPane.resx">
+      <DependentUpon>DepartmentsPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\LoginPane.resx">
+      <DependentUpon>LoginPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\NumPane.resx">
+      <DependentUpon>NumPane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\SalesReceiptPane.resx">
       <DependentUpon>SalesReceiptPane.cs</DependentUpon>
     </EmbeddedResource>
