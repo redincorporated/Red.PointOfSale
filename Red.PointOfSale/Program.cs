@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Red.PointOfSale.Repositories.SQLite;
 using Red.PointOfSale.Gui;
 using Red.PointOfSale.Models;
+using Red.PointOfSale.Helpers;
 
 namespace Red.PointOfSale
 {
@@ -17,7 +18,7 @@ namespace Red.PointOfSale
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            MainForm.Instance.AddChild(Sales());
+            MainForm.Instance.AddChild(Login());
             Application.Run(MainForm.Instance);
         }
 
@@ -27,6 +28,14 @@ namespace Red.PointOfSale
         static LoginPane Login()
         {
             var loginView = new LoginPane();
+            loginView.Login += delegate (object sender, UserEventArgs e) {
+                var user = userRepo.ReadByUsernameAndPassword(e.User.Username, e.User.Password);
+                if (user != null) {
+                    MainForm.Instance.AddChild(new DepartmentsPane());
+                } else {
+                    MessageHelper.ShowWarning("Invalid username or password. Please try again.");
+                }
+            };
             return loginView;
         }
 
