@@ -16,10 +16,6 @@ namespace Red.PointOfSale.Services
 {
     class Service
     {
-        SQLiteSalesReceiptRepository salesReceiptRepo = new SQLiteSalesReceiptRepository();
-        SQLiteItemRepository itemRepo = new SQLiteItemRepository();
-        SQLiteUserRepository userRepo = new SQLiteUserRepository();
-
         string url;
         HttpClient client;
         string apiKey;
@@ -29,30 +25,6 @@ namespace Red.PointOfSale.Services
             this.url = url;
             this.apiKey = apiKey;
             this.client = new HttpClient();
-        }
-
-        public bool Login(string username, string password)
-        {
-            if (userRepo.ReadByUsernameAndPassword(username, password) != null) {
-                return true;
-            }
-            return false;
-        }
-
-        public Item GetItem(string code)
-        {
-            return itemRepo.ReadByCode(code);
-        }
-
-        public void SaveSalesReceipt(SalesReceipt receipt)
-        {
-            int salesReceiptId = salesReceiptRepo.Save(receipt);
-            foreach (var item in receipt.Items) {
-                item.Receipt.Id = salesReceiptId;
-                salesReceiptRepo.SaveItem(item);
-                var journal = new ItemJournal { Item = item.Item, QuantityOut = item.Quantity };
-                itemRepo.SaveJournal(journal);
-            }
         }
 
         public async void PushSales(SalesReceipt sales)
