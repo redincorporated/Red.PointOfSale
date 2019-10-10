@@ -35,3 +35,8 @@ create table users(
 	phone varchar(255),
 	name varchar(255)
 );
+
+create table item_departments(
+	id integer not null primary key,
+	name varchar(255)
+);
