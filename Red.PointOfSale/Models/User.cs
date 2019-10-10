@@ -13,5 +13,23 @@ namespace Red.PointOfSale.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Username { get; set; }
+
+        public User() { }
+
+        public User(string username, string password)
+        {
+            this.Username = username;
+            this.Password = password;
+        }
+    }
+
+    public class UserEventArgs : EventArgs
+    {
+        public User User { get; set; }
+
+        public UserEventArgs(User user)
+        {
+            this.User = user;
+        }
     }
 }
