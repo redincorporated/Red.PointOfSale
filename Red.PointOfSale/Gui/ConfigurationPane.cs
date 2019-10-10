@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using Red.PointOfSale.Services;
+using Red.PointOfSale.Models;
+using Red.PointOfSale.Repositories.SQLite;
 
 namespace Red.PointOfSale.Gui
 {
@@ -15,6 +19,26 @@ namespace Red.PointOfSale.Gui
         public ConfigurationPane()
         {
             InitializeComponent();
+
+            service.ResponseReceived += Service_ResponseReceived;
+        }
+
+        SQLiteUserRepository userRepo = new SQLiteUserRepository();
+
+        private void Service_ResponseReceived(object sender, ResponseEventArgs e)
+        {
+            if (e.Response.Data is List<User>) {
+                foreach (var u in e.Response.Data as List<User>) {
+                    userRepo.SaveOrUpdate(u);
+                }
+            }
+        }
+
+        Service service = new Service(ConfigurationManager.AppSettings["pos-backend-url"], ConfigurationManager.AppSettings["pos-backend-apikey"]);
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            service.PullUsers();
         }
     }
 }
