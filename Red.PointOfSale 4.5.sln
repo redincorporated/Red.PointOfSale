@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+# SharpDevelop 4.4
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Red.PointOfSale 4.5", "Red.PointOfSale\Red.PointOfSale 4.5.csproj", "{D30A35C7-1F8A-4599-80CA-0493E688442C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Red.PointOfSale.Tests 4.5", "Red.PointOfSale.Tests\Red.PointOfSale.Tests 4.5.csproj", "{9FC00844-7DC0-422F-ACA7-300FD16AF0F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D30A35C7-1F8A-4599-80CA-0493E688442C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30A35C7-1F8A-4599-80CA-0493E688442C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30A35C7-1F8A-4599-80CA-0493E688442C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D30A35C7-1F8A-4599-80CA-0493E688442C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FC00844-7DC0-422F-ACA7-300FD16AF0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FC00844-7DC0-422F-ACA7-300FD16AF0F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC00844-7DC0-422F-ACA7-300FD16AF0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FC00844-7DC0-422F-ACA7-300FD16AF0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8C3ACDD-B1DC-41E9-BA34-48F019AE175F}
+	EndGlobalSection
+EndGlobal
