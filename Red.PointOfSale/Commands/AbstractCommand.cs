@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Red.PointOfSale.Commands
 {
-    abstract class AbstractCommand : ICommand
+    public abstract class AbstractCommand : ICommand
     {
         public abstract void Run();
     }

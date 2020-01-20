@@ -18,10 +18,11 @@ namespace Red.PointOfSale.Models
 
         public SalesReceipt()
         {
+            Date = DateTime.Now;
             Items = new List<SalesReceiptItem>();
         }
 
-        public void AddItem(List<SalesReceiptItem> items)
+        public void AddItems(List<SalesReceiptItem> items)
         {
             foreach (var i in items) {
                 AddItem(i);
@@ -31,7 +32,7 @@ namespace Red.PointOfSale.Models
         public void AddItem(SalesReceiptItem item)
         {
             item.Receipt = this;
-            Items.Add(item);
+            Items.Insert(0, item);
         }
 
         public double TotalAmount {
@@ -43,6 +44,11 @@ namespace Red.PointOfSale.Models
                 return amount;
             }
         }
+    }
+
+    public class SalesReceiptEventArgs : EventArgs
+    {
+        public SalesReceipt Receipt { get; set; }
     }
 
     public class SalesReceiptItem : BaseModel

@@ -14,6 +14,17 @@ namespace Red.PointOfSale.Models
         public double Price { get; set; }
         public ItemDepartment Department { get; set; }
         public Item Parent { get; set; }
+        
+        public Item()
+        {
+        }
+        
+        public Item(string code, string name, double price)
+        {
+            this.Code = code;
+            this.Name = name;
+            this.Price = price;
+        }
     }
 
     public class ItemDepartment : BaseModel

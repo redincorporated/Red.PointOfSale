@@ -9,9 +9,31 @@ using System.Threading.Tasks;
 
 namespace Red.PointOfSale.Repositories.SQLite
 {
-    public class BaseSQLiteRepository
+    public class BaseSQLiteRepository<T>: IBaseRepository<T>
     {
         SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.AppSettings["sqlite-connection"]);
+        
+        public virtual void Save(T t)
+        {
+        }
+        
+        public virtual void Update(T t, int id)
+        {
+        }
+        
+        public virtual void Delete(int id)
+        {
+        }
+        
+        public virtual T Read(int id)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public virtual List<T> FindAll()
+        {
+            throw new NotImplementedException();
+        }
 
         protected void OpenConnection()
         {

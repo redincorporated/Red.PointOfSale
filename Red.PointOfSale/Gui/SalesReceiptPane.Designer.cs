@@ -71,13 +71,13 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxItemCode = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewItems = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -463,12 +463,12 @@
             this.columnHeader3.Text = "AMOUNT";
             this.columnHeader3.Width = 80;
             // 
-            // textBox1
+            // textBoxItemCode
             // 
-            this.textBox1.Location = new System.Drawing.Point(648, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxItemCode.Location = new System.Drawing.Point(648, 40);
+            this.textBoxItemCode.Name = "textBoxItemCode";
+            this.textBoxItemCode.Size = new System.Drawing.Size(100, 20);
+            this.textBoxItemCode.TabIndex = 1;
             // 
             // button4
             // 
@@ -509,26 +509,26 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBoxItemCode);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1264, 100);
             this.panel1.TabIndex = 50;
             // 
-            // listView1
+            // listViewItems
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(16, 288);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(360, 344);
-            this.listView1.TabIndex = 49;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewItems.HideSelection = false;
+            this.listViewItems.Location = new System.Drawing.Point(16, 288);
+            this.listViewItems.Name = "listViewItems";
+            this.listViewItems.Size = new System.Drawing.Size(360, 344);
+            this.listViewItems.TabIndex = 49;
+            this.listViewItems.UseCompatibleStateImageBehavior = false;
+            this.listViewItems.View = System.Windows.Forms.View.Details;
             // 
             // SalesReceiptPane
             // 
@@ -579,7 +579,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewItems);
             this.Name = "SalesReceiptPane";
             this.Size = new System.Drawing.Size(1264, 739);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -635,12 +635,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxItemCode;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewItems;
     }
 }

@@ -7,6 +7,7 @@ using Red.PointOfSale.Repositories.SQLite;
 using Red.PointOfSale.Gui;
 using Red.PointOfSale.Models;
 using Red.PointOfSale.Helpers;
+using Red.PointOfSale.Services;
 
 namespace Red.PointOfSale
 {
@@ -18,37 +19,42 @@ namespace Red.PointOfSale
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            MainForm.Instance.AddChild(Login());
+            MainForm.Instance.AddChild(Sales());
             Application.Run(MainForm.Instance);
         }
 
-        static SQLiteItemRepository itemRepo = new SQLiteItemRepository();
-        static SQLiteUserRepository userRepo = new SQLiteUserRepository();
+        static SalesReceiptService service = new SalesReceiptService(
+            new SQLiteSalesReceiptRepository(),
+            new SQLiteItemRepository(),
+            new SQLiteUserRepository());
 
         static LoginPane Login()
         {
-            var loginView = new LoginPane();
-            loginView.Login += delegate (object sender, UserEventArgs e) {
-                var user = userRepo.ReadByUsernameAndPassword(e.User.Username, e.User.Password);
+            var view = new LoginPane();
+            view.Login += delegate (object sender, UserEventArgs e) {
+                var user = service.ReadUserByUsernameAndPassword(e.User.Username, e.User.Password);
                 if (user != null) {
                     MainForm.Instance.AddChild(new DepartmentsPane());
                 } else {
                     MessageHelper.ShowWarning("Invalid username or password. Please try again.");
                 }
             };
-            return loginView;
+            return view;
         }
 
         static SalesReceiptPane Sales()
         {
-            var salesReceiptView = new SalesReceiptPane();
-            salesReceiptView.ItemSearch += delegate (object sender, ItemEventArgs e) {
-                var item = itemRepo.ReadByCode(e.Item.Code);
+            var view = new SalesReceiptPane();
+            view.ItemSearch += delegate (object sender, ItemEventArgs e) {
+                var item = service.ReadItemByCode(e.Item.Code);
                 if (item != null) {
-                    salesReceiptView.AddItem(item);
+                    view.AddItem(item);
                 }
             };
-            return salesReceiptView;
+            view.Save += delegate (object sender, SalesReceiptEventArgs e) {
+                service.SaveSalesReceipt(e.Receipt);
+            };
+            return view;
         }
 
         static ConfigurationPane Settings()

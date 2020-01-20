@@ -7,7 +7,7 @@ using Red.PointOfSale.Models;
 
 namespace Red.PointOfSale.Repositories
 {
-    public interface IItemRepository
+    public interface IItemRepository : IBaseRepository<Item>
     {
         Item ReadByCode(string code);
     }

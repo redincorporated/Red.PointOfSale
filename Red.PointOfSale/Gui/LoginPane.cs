@@ -26,6 +26,12 @@ namespace Red.PointOfSale.Gui
 
             AddChild(usernamePane);
         }
+        
+        public void PerformLogin(string username, string password)
+        {
+            usernamePane.PerformGo(username);
+            passwordPane.PerformGo(password);
+        }
 
         public event EventHandler<UserEventArgs> Login;
 

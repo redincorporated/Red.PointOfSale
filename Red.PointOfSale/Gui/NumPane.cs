@@ -25,6 +25,12 @@ namespace Red.PointOfSale.Gui
             InitializeComponent();
             this.IsPassword = isPassword;
         }
+        
+        public void PerformGo(string @value)
+        {
+            textBox1.Text = @value;
+            buttonGo_Click(this, null);
+        }
 
         public bool IsPassword {
             set {
@@ -32,6 +38,11 @@ namespace Red.PointOfSale.Gui
                     textBox1.PasswordChar = '*';
                 }
             }
+        }
+        
+        public void Clear()
+        {
+            buttonClear_Click(this, null);
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

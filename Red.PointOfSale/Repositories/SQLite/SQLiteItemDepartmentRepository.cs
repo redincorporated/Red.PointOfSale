@@ -7,7 +7,7 @@ using Red.PointOfSale.Models;
 
 namespace Red.PointOfSale.Repositories.SQLite
 {
-    public class SQLiteItemDepartmentRepository : BaseSQLiteRepository
+    public class SQLiteItemDepartmentRepository : BaseSQLiteRepository<ItemDepartment>
     {
         public List<ItemDepartment> FindAll()
         {

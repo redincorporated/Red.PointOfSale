@@ -8,7 +8,7 @@ using Red.PointOfSale.Models;
 
 namespace Red.PointOfSale.Repositories.SQLite
 {
-    public class SQLiteUserRepository : BaseSQLiteRepository
+    public class SQLiteUserRepository : BaseSQLiteRepository<User>
     {
         public User ReadByUsernameAndPassword(string username, string password)
         {
@@ -54,7 +54,7 @@ where username = @username";
             return u;
         }
 
-        public void Save(User user)
+        public override void Save(User user)
         {
             string query = @"
 insert into users(username, password, email, name, phone)
@@ -67,7 +67,7 @@ values(@username, @password, @email, @name, @phone)";
                 , new SQLiteParameter("@phone", user.Phone));
         }
 
-        public void Update(User user, int id)
+        public override void Update(User user, int id)
         {
             string query = @"
 update users set username = @username,

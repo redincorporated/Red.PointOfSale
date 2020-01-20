@@ -8,7 +8,7 @@ using Red.PointOfSale.Models;
 
 namespace Red.PointOfSale.Repositories.SQLite
 {
-    public class SQLiteSalesReceiptRepository : BaseSQLiteRepository
+    public class SQLiteSalesReceiptRepository : BaseSQLiteRepository<SalesReceipt>
     {
         public List<SalesReceipt> FindUnposted()
         {
@@ -27,7 +27,7 @@ where status = @status";
                 }
             }
             foreach (var s in receipts) {
-                s.AddItem(FindItems(s.Id));
+                s.AddItems(FindItems(s.Id));
             }
             return receipts;
         }

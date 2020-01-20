@@ -13,30 +13,56 @@ namespace Red.PointOfSale.Gui
 {
     public partial class SalesReceiptPane : UserControl
     {
-        SalesReceipt receipt = new SalesReceipt();
+        SalesReceipt receipt;
 
         public SalesReceiptPane()
         {
             InitializeComponent();
-            ActiveControl = textBox1;
-            textBox1.Select();
-            textBox1.Focus();
-            ItemsChanged += SalesReceiptPane_ItemsChanged;
-            textBox1.LostFocus += delegate (object sender, EventArgs e) {
-                textBox1.Focus();
+
+            ActiveControl = textBoxItemCode;
+
+            textBoxItemCode.Select();
+            textBoxItemCode.Focus();
+            textBoxItemCode.LostFocus += delegate (object sender, EventArgs e) {
+                textBoxItemCode.Focus();
             };
+
+            textBoxItemCode.KeyDown += TextBoxItemCode_KeyDown;
+
+            ItemsChanged += SalesReceiptPane_ItemsChanged;
+            
+            Receipt = new SalesReceipt();
+        }
+        
+        public void SearchCustomer(string code)
+        {
+            OnCustomerSearch(new CustomerEventArgs(new Customer(code)));
+        }
+        
+        public void SearchItem(string code)
+        {
+            textBoxItemCode.Text = code;
+            TextBoxItemCode_KeyDown(this, new KeyEventArgs(Keys.Enter));
         }
 
-        public void Save()
+        private void TextBoxItemCode_KeyDown(object sender, KeyEventArgs e)
         {
-            OnSalesReceiptSave(null);
+            if (e.KeyCode == Keys.Enter) {
+                OnItemSearch(new ItemEventArgs(new Item { Code = textBoxItemCode.Text }));
+                textBoxItemCode.Clear();
+            }
+        }
+
+        public void PerformSave()
+        {
+            OnSave(null);
         }
 
         private void SalesReceiptPane_ItemsChanged(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
+            listViewItems.Items.Clear();
             foreach (var i in receipt.Items) {
-                var li = listView1.Items.Add(i.Item.Name);
+                var li = listViewItems.Items.Add(i.Item.Name);
                 li.SubItems.Add(i.Quantity.ToString());
                 li.SubItems.Add(i.Price.ToString());
                 li.SubItems.Add(i.Amount.ToString());
@@ -44,7 +70,10 @@ namespace Red.PointOfSale.Gui
         }
 
         public SalesReceipt Receipt {
-            get { return receipt; }
+            get {
+                receipt.Date = DateTime.Now;
+                return receipt;
+            }
             set {
                 receipt = value;
             }
@@ -62,14 +91,14 @@ namespace Red.PointOfSale.Gui
         }
 
         public event EventHandler<ItemEventArgs> ItemSearch;
-        public event EventHandler CustomerSearch;
+        public event EventHandler<CustomerEventArgs> CustomerSearch;
         public event EventHandler ItemsChanged;
-        public event EventHandler SalesReceiptSave;
+        public event EventHandler<SalesReceiptEventArgs> Save;
 
-        protected virtual void OnSalesReceiptSave(EventArgs e)
+        protected virtual void OnSave(SalesReceiptEventArgs e)
         {
-            if (SalesReceiptSave != null) {
-                SalesReceiptSave(this, e);
+            if (Save != null) {
+                Save(this, e);
             }
         }
 
@@ -80,7 +109,7 @@ namespace Red.PointOfSale.Gui
             }
         }
 
-        protected virtual void OnCustomerSearch(EventArgs e)
+        protected virtual void OnCustomerSearch(CustomerEventArgs e)
         {
             if (CustomerSearch != null) {
                 CustomerSearch(this, e);
@@ -91,14 +120,6 @@ namespace Red.PointOfSale.Gui
         {
             if (ItemSearch != null) {
                 ItemSearch(this, e);
-            }
-        }
-
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter) {
-                OnItemSearch(new ItemEventArgs(new Item { Code = textBox1.Text }));
-                textBox1.Clear();
             }
         }
     }

@@ -8,7 +8,7 @@ using Red.PointOfSale.Models;
 
 namespace Red.PointOfSale.Repositories.SQLite
 {
-    public class SQLiteItemRepository : BaseSQLiteRepository, IItemRepository
+    public class SQLiteItemRepository : BaseSQLiteRepository<Item>, IItemRepository
     {
         public Item ReadByCode(string code)
         {
