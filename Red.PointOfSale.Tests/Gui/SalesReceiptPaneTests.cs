@@ -17,6 +17,32 @@ namespace Red.PointOfSale.Tests.Gui
         }
         
         [Test]
+        public void TestEndOfDayReading()
+        {
+            p.ReadEndOfDay();
+        }
+        
+        [Test]
+        public void TestVoidItem()
+        {
+            p.VoidItem();
+        }
+        
+        [Test]
+        public void TestAddPayment()
+        {
+            p.AddPayment(new Payment());
+        }
+        
+        [Test]
+        public void TestVoid()
+        {
+            p.AddItem(new Item("001"));
+            p.Void();
+            Assert.AreEqual(0, p.Receipt.Items.Count);
+        }
+        
+        [Test]
         public void TestSearchItem()
         {
             p.ItemSearch += delegate(object sender, ItemEventArgs e) { 
