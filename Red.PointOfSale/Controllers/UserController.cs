@@ -3,21 +3,24 @@ using Red.PointOfSale.Gui;
 using Red.PointOfSale.Helpers;
 using Red.PointOfSale.Models;
 using Red.PointOfSale.Repositories;
+using Red.PointOfSale.Views;
 
 namespace Red.PointOfSale.Controllers
 {
     public class UserController
     {
         IUserRepository userRepo;
+        ILoginView loginView;
         
-        public UserController()
+        public UserController(IUserRepository userRepo, ILoginView loginView)
         {
+            this.userRepo = userRepo;
+            this.loginView = loginView;
         }
         
-        public LoginPane Login()
+        public IView Login()
         {
-            var v = new LoginPane();
-            v.Login += delegate(object sender, UserEventArgs e) { 
+            loginView.Login += delegate(object sender, UserEventArgs e) { 
                 var user = userRepo.ReadByUsernameAndPassword(e.User.Username, e.User.Password);
                 if (user != null) {
                     
@@ -25,7 +28,7 @@ namespace Red.PointOfSale.Controllers
                     MessageHelper.ShowWarning("Username or password not correct. Please try again!");
                 }
             };
-            return v;
+            return loginView;
         }
         
         public void Logout()

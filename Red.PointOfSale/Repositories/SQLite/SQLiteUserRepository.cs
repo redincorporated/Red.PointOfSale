@@ -8,7 +8,7 @@ using Red.PointOfSale.Models;
 
 namespace Red.PointOfSale.Repositories.SQLite
 {
-    public class SQLiteUserRepository : BaseSQLiteRepository<User>
+    public class SQLiteUserRepository : BaseSQLiteRepository<User>, IUserRepository
     {
         public User ReadByUsernameAndPassword(string username, string password)
         {

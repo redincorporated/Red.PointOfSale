@@ -13,5 +13,19 @@ namespace Red.PointOfSale.Models
         
         public SalesReceipt Receipt { get; set; }
         public double Amount { get; set; }
+        
+        public Payment()
+        {
+        }
+        
+        public Payment(double amount)
+        {
+            this.Amount = amount;
+        }
+    }
+    
+    public class PaymentType : BaseModel
+    {
+        public string Name { get; set; }
     }
 }

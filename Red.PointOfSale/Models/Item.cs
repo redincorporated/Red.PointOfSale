@@ -19,6 +19,10 @@ namespace Red.PointOfSale.Models
         {
         }
         
+        public Item(string code) : this(code, "", 0)
+        {
+        }
+        
         public Item(string code, string name, double price)
         {
             this.Code = code;

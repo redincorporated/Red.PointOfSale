@@ -31,7 +31,9 @@ namespace Red.PointOfSale.Tests.Gui
         [Test]
         public void TestAddPayment()
         {
-            p.AddPayment(new Payment());
+            p.PaymentAdd += delegate(object sender, EventArgs e) { 
+                p.AddPayment(new Payment());
+            };
         }
         
         [Test]

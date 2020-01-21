@@ -10,6 +10,7 @@ namespace Red.PointOfSale.Models
     {
         public Customer Customer { get; set; }
         public List<SalesReceiptItem> Items { get; set; }
+        public List<Payment> Payments { get; set; }
         public DateTime Date { get; set; }
         public Account IncomeAccount { get; set; }
         public string RefNo { get; set; }
@@ -20,6 +21,21 @@ namespace Red.PointOfSale.Models
         {
             Date = DateTime.Now;
             Items = new List<SalesReceiptItem>();
+            Payments = new List<Payment>();
+        }
+        
+        public double TotalPayments {
+            get {
+                double amount = 0;
+                foreach (var p in Payments) {
+                    amount += p.Amount;
+                }
+                return amount;
+            }
+        }
+        
+        public double TotalChange {
+            get { return TotalPayments - TotalAmount; }
         }
 
         public void AddItems(List<SalesReceiptItem> items)
@@ -27,6 +43,22 @@ namespace Red.PointOfSale.Models
             foreach (var i in items) {
                 AddItem(i);
             }
+        }
+        
+        public void AddPayment(Payment payment)
+        {
+            payment.Receipt = this;
+            Payments.Add(payment);
+        }
+        
+        public void AddItem(Item item)
+        {
+            AddItem(item, 1);
+        }
+        
+        public void AddItem(Item item, double quantity)
+        {
+            AddItem(new SalesReceiptItem(item, quantity));
         }
 
         public void AddItem(SalesReceiptItem item)
@@ -63,7 +95,11 @@ namespace Red.PointOfSale.Models
 
         public SalesReceiptItem() { }
 
-        public SalesReceiptItem(Item item) : this(item, 1, item.Price)
+        public SalesReceiptItem(Item item) : this(item, 1)
+        {
+        }
+        
+        public SalesReceiptItem(Item item, double quantity) : this(item, quantity, item.Price)
         {
         }
 

@@ -34,6 +34,31 @@ namespace Red.PointOfSale.Gui
             Receipt = new SalesReceipt();
         }
         
+        public void ReadEndOfDay()
+        {
+        }
+        
+        public SalesReceiptItem SelectedItem {
+            get {
+                if (listViewItems.SelectedItems.Count > 0) {
+                    return Receipt.Items[listViewItems.SelectedItems[0].Index];
+                }
+                return null;
+            }
+        }
+        
+        public void VoidItem()
+        {
+            if (SelectedItem != null) {
+                Receipt.Items.Remove(SelectedItem);
+            }
+        }
+        
+        public void Void()
+        {
+            Receipt = new SalesReceipt();
+        }
+        
         public void SearchCustomer(string code)
         {
             OnCustomerSearch(new CustomerEventArgs(new Customer(code)));
@@ -71,12 +96,16 @@ namespace Red.PointOfSale.Gui
 
         public SalesReceipt Receipt {
             get {
-                receipt.Date = DateTime.Now;
                 return receipt;
             }
             set {
                 receipt = value;
             }
+        }
+        
+        public void AddPayment(Payment payment)
+        {
+            Receipt.AddPayment(payment);
         }
 
         public void AddItem(Item item)
@@ -94,6 +123,14 @@ namespace Red.PointOfSale.Gui
         public event EventHandler<CustomerEventArgs> CustomerSearch;
         public event EventHandler ItemsChanged;
         public event EventHandler<SalesReceiptEventArgs> Save;
+        public event EventHandler PaymentAdd;
+        
+        protected virtual void OnPaymentAdd(EventArgs e)
+        {
+            if (PaymentAdd != null) {
+                PaymentAdd(this, e);
+            }
+        }
 
         protected virtual void OnSave(SalesReceiptEventArgs e)
         {

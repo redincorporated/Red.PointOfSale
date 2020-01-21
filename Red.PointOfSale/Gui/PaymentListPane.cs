@@ -13,7 +13,12 @@ namespace Red.PointOfSale.Gui
 {
     public partial class PaymentListPane : UserControl
     {
-        List<Payment> payments;
+        SalesReceipt receipt;
+        
+        public SalesReceipt Receipt {
+            get { return receipt; }
+            set { receipt = value; }
+        }
         
         public PaymentListPane()
         {
@@ -22,7 +27,7 @@ namespace Red.PointOfSale.Gui
         
         public void AddPayment(Payment payment)
         {
-            payments.Add(payment);
+            Receipt.AddPayment(payment);
         }
         
         public event EventHandler Pay;

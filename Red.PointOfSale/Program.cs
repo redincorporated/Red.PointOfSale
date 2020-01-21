@@ -16,6 +16,12 @@ namespace Red.PointOfSale
         [STAThread]
         static void Main()
         {
+            ApplicationHelper.Attach(new ConsoleApplication());
+            ApplicationHelper.Run();
+        }
+        
+        static void lalala()
+        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
