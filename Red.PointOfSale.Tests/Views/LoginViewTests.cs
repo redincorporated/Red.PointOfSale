@@ -11,14 +11,11 @@ namespace Red.PointOfSale.Tests.Views
         [SetUp]
         public void Setup()
         {
-            ApplicationHelper.Attach(new ConsoleApplication());
         }
         
         [Test]
         public void TestMethod()
         {
-            var v = new ConsoleLoginView();
-            ApplicationHelper.Show(v);
         }
     }
 }

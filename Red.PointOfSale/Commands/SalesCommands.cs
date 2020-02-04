@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Configuration;
+using System.Windows.Forms;
 using Red.PointOfSale.Controllers;
-using Red.PointOfSale.Views;
+using Red.PointOfSale.Helpers;
+using Red.PointOfSale.Repositories;
+using Red.PointOfSale.Repositories.MySql;
 
 namespace Red.PointOfSale.Commands
 {
@@ -8,9 +12,11 @@ namespace Red.PointOfSale.Commands
     {
         public override void Run()
         {
-            var v = new ConsoleSalesReceiptView();
-            var c = new SalesReceiptController(v);
-            c.Add();
+            string config = ConfigurationManager.AppSettings["repository"];
+            var itemRepo = AbstractRepositoryFactory.GetrepositoryFactory(config).CreateItemRepository();
+            var customerRepo = AbstractRepositoryFactory.GetrepositoryFactory(config).CreateCustomerRepository();
+            var controller = new SalesReceiptController(itemRepo, customerRepo);
+            MainForm.Instance.AddChild(controller.Create() as UserControl);
         }
     }
 }

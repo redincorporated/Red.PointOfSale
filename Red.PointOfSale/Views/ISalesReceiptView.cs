@@ -1,14 +1,12 @@
 ﻿using System;
+using Red.PointOfSale.Models;
 
 namespace Red.PointOfSale.Views
 {
     public interface ISalesReceiptView : IView
     {
-        
-    }
-    
-    public class ConsoleSalesReceiptView : ISalesReceiptView
-    {
-        
+        event EventHandler<ItemEventArgs> ItemSearch;
+        event EventHandler<CustomerEventArgs> CustomerSearch;
+        void AddItem(Item item);
     }
 }

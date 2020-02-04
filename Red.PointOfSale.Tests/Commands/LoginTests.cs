@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Red.PointOfSale.Commands;
+using Red.PointOfSale.Views;
 
 namespace Red.PointOfSale.Tests.Commands
 {

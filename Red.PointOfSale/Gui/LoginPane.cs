@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Red.PointOfSale.Models;
+using Red.PointOfSale.Views;
 
 namespace Red.PointOfSale.Gui
 {
-    public partial class LoginPane : UserControl
+    public partial class LoginPane : UserControl, ILoginView
     {
         public LoginPane()
         {

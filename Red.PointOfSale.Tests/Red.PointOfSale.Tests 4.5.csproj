@@ -32,8 +32,12 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NUnit.Framework">
-      <HintPath>$(SharpDevelopBinPath)\Tools\NUnit\NUnit.Framework.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NSubstitute, Version=0.9.5.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.0.9.5.0\lib\35\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.7.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.7.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -52,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\LoginTests.cs" />
+    <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="Gui\LoginPaneTests.cs" />
     <Compile Include="Gui\PaymentListPaneTests.cs" />
     <Compile Include="Gui\SalesReceiptPaneTests.cs" />
@@ -70,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Red.PointOfSale\Red.PointOfSale 4.5.csproj">
@@ -77,14 +83,7 @@
       <Name>Red.PointOfSale 4.5</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers" />
-    <Folder Include="Models" />
-    <Folder Include="Gui" />
-    <Folder Include="Commands" />
-    <Folder Include="Views" />
-    <Folder Include="Repositories" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ProfilingSessions\Session20200120_225349.sdps" />
   </ItemGroup>

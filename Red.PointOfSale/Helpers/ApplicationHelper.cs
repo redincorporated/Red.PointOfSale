@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Red.PointOfSale.Commands;
+using Red.PointOfSale.Controllers;
+using Red.PointOfSale.Repositories.MySql;
 using Red.PointOfSale.Views;
 
 namespace Red.PointOfSale.Helpers
@@ -33,16 +35,7 @@ namespace Red.PointOfSale.Helpers
     {
         public void Run()
         {
-            string s = "";
-            do {
-                ShowMenu();
-                s = Console.ReadLine();
-                switch (s) {
-                    case "1":
-                        new CreateSales().Run();
-                        break;
-                }
-            } while (s != "exit");
+            new CreateSales().Run();
         }
         
         public void Show(IView view)

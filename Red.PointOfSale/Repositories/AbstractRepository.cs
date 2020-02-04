@@ -6,14 +6,14 @@ namespace Red.PointOfSale.Repositories
 {
     public class AbstractRepositoryFactory
     {
-        public const int MySql = 1;
-        public const int SQLite = 0;
+        public const string MySql = "mysql";
+        public const string SQLite = "sqlite";
         
         public AbstractRepositoryFactory()
         {
         }
         
-        public static IRepositoryFactory GetrepositoryFactory(int type)
+        public static IRepositoryFactory GetrepositoryFactory(string type)
         {
             switch (type) {
                     case MySql: return new MySqlRepositoryFactory();
@@ -25,6 +25,8 @@ namespace Red.PointOfSale.Repositories
     public interface IRepositoryFactory
     {
         IUserRepository CreateUserRepository();
+        IItemRepository CreateItemRepository();
+        ICustomerRepository CreateCustomerRepository();
     }
     
     public class MySqlRepositoryFactory : AbstractRepositoryFactory, IRepositoryFactory
@@ -33,6 +35,16 @@ namespace Red.PointOfSale.Repositories
         {
             return new MySqlUserRepository();
         }
+        
+        public IItemRepository CreateItemRepository()
+        {
+            return new MySqlItemRepository();
+        }
+        
+        public ICustomerRepository CreateCustomerRepository()
+        {
+            return new MySqlCustomerRepository();
+        }
     }
     
     public class SQLiteRepositoryFactory : AbstractRepositoryFactory, IRepositoryFactory
@@ -40,6 +52,16 @@ namespace Red.PointOfSale.Repositories
         public IUserRepository CreateUserRepository()
         {
             return new SQLiteUserRepository();
+        }
+        
+        public IItemRepository CreateItemRepository()
+        {
+            return new SQLiteItemRepository();
+        }
+        
+        public ICustomerRepository CreateCustomerRepository()
+        {
+            return new SQLiteCustomerRepository();
         }
     }
 }
