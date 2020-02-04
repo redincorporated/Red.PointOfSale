@@ -5,6 +5,7 @@ using Red.PointOfSale.Controllers;
 using Red.PointOfSale.Helpers;
 using Red.PointOfSale.Repositories;
 using Red.PointOfSale.Repositories.MySql;
+using Red.PointOfSale.Views;
 
 namespace Red.PointOfSale.Commands
 {
@@ -12,11 +13,13 @@ namespace Red.PointOfSale.Commands
     {
         public override void Run()
         {
-            string config = ConfigurationManager.AppSettings["repository"];
-            var factory = RepositoryFactory.GetRepositoryFactory(config);
+            string repo = ConfigurationManager.AppSettings["sql-repository"];
+            string view = ConfigurationManager.AppSettings["view"];
+            var factory = RepositoryFactory.GetRepositoryFactory(repo);
             var itemRepo = factory.CreateItemRepository();
             var customerRepo = factory.CreateCustomerRepository();
-            var controller = new SalesReceiptController(itemRepo, customerRepo);
+            var salesReceiptView = ViewFactory.GetViewFactory(view).CreateSalesReceiptView();
+            var controller = new SalesReceiptController(itemRepo, customerRepo, salesReceiptView);
             ApplicationHelper.Show(controller.Create());
         }
     }

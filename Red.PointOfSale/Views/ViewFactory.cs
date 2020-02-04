@@ -22,6 +22,7 @@ namespace Red.PointOfSale.Views
     public interface IViewFactory
     {
         ILoginView CreateLoginView();
+        ISalesReceiptView CreateSalesReceiptView();
     }
     
     public class WindowViewFactory : IViewFactory
@@ -29,6 +30,11 @@ namespace Red.PointOfSale.Views
         public ILoginView CreateLoginView()
         {
             return new LoginPane();
+        }
+        
+        public ISalesReceiptView CreateSalesReceiptView()
+        {
+            return new SalesReceiptPane();
         }
     }
 }

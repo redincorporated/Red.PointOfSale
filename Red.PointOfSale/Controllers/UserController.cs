@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Red.PointOfSale.Commands;
 using Red.PointOfSale.Gui;
 using Red.PointOfSale.Helpers;
 using Red.PointOfSale.Models;
@@ -22,11 +23,12 @@ namespace Red.PointOfSale.Controllers
         public IView Login()
         {
             loginView.Login += delegate(object sender, UserEventArgs e) { 
-                var user = userRepo.ReadByUsernameAndPassword(e.User.Name, e.User.Password);
+                var user = userRepo.ReadByUsernameAndPassword(e.User.Username, e.User.Password);
                 if (user != null) {
-                    // TODO:
+                    new CreateSales().Run();
                 } else {
                     MessageHelper.ShowWarning("Username or password not correct. Please try again!");
+                    loginView.Reset();
                 }
             };
             return loginView;

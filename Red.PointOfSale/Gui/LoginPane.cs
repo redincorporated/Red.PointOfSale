@@ -28,6 +28,12 @@ namespace Red.PointOfSale.Gui
             AddChild(usernamePane);
         }
         
+        public void Reset()
+        {
+            usernamePane.Value = passwordPane.Value = "";
+            AddChild(usernamePane);
+        }
+        
         public void PerformLogin(string username, string password)
         {
             usernamePane.PerformGo(username);

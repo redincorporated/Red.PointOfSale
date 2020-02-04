@@ -18,6 +18,7 @@ namespace Red.PointOfSale.Gui
 
         public string Value {
             get { return textBox1.Text;  }
+            set { textBox1.Text = value; }
         }
 
         public NumPane(bool isPassword)

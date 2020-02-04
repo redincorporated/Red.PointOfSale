@@ -13,10 +13,11 @@ namespace Red.PointOfSale.Controllers
         ICustomerRepository customerRepo;
         ISalesReceiptView salesReceiptView;
 
-        public SalesReceiptController(IItemRepository itemRepo, ICustomerRepository customerRepo)
+        public SalesReceiptController(IItemRepository itemRepo, ICustomerRepository customerRepo, ISalesReceiptView salesReceiptView)
         {
             this.itemRepo = itemRepo;
             this.customerRepo = customerRepo;
+            this.salesReceiptView = salesReceiptView;
         }
         
         public IView Create()

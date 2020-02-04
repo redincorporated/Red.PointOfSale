@@ -7,5 +7,6 @@ namespace Red.PointOfSale.Views
     {
         event EventHandler<UserEventArgs> Login;
         void PerformLogin(string username, string password);
+        void Reset();
     }
 }

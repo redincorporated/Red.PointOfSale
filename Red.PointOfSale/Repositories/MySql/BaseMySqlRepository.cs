@@ -37,7 +37,16 @@ namespace Red.PointOfSale.Repositories.MySql
         
         protected void OpenConnection()
         {
-            
+            if (conn.State == ConnectionState.Closed) {
+                conn.Open();
+            }
+        }
+        
+        protected void CloseConnection()
+        {
+            if (conn.State == ConnectionState.Open) {
+                conn.Close();
+            }
         }
         
         public virtual void Save(T t)

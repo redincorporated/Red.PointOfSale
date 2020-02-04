@@ -17,7 +17,7 @@ namespace Red.PointOfSale.Commands
         
         public override void Run()
         {
-            string repo = ConfigurationManager.AppSettings["repository"];
+            string repo = ConfigurationManager.AppSettings["sql-repository"];
             string view = ConfigurationManager.AppSettings["view"];
             var userRepo = RepositoryFactory.GetRepositoryFactory(repo).CreateUserRepository();
             var loginView = ViewFactory.GetViewFactory(view).CreateLoginView();
