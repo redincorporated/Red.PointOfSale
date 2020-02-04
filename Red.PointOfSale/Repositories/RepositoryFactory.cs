@@ -4,16 +4,16 @@ using Red.PointOfSale.Repositories.SQLite;
 
 namespace Red.PointOfSale.Repositories
 {
-    public class AbstractRepositoryFactory
+    public abstract class RepositoryFactory
     {
         public const string MySql = "mysql";
         public const string SQLite = "sqlite";
         
-        public AbstractRepositoryFactory()
+        public RepositoryFactory()
         {
         }
         
-        public static IRepositoryFactory GetrepositoryFactory(string type)
+        public static IRepositoryFactory GetRepositoryFactory(string type)
         {
             switch (type) {
                     case MySql: return new MySqlRepositoryFactory();
@@ -29,7 +29,7 @@ namespace Red.PointOfSale.Repositories
         ICustomerRepository CreateCustomerRepository();
     }
     
-    public class MySqlRepositoryFactory : AbstractRepositoryFactory, IRepositoryFactory
+    public class MySqlRepositoryFactory : RepositoryFactory, IRepositoryFactory
     {
         public IUserRepository CreateUserRepository()
         {
@@ -47,7 +47,7 @@ namespace Red.PointOfSale.Repositories
         }
     }
     
-    public class SQLiteRepositoryFactory : AbstractRepositoryFactory, IRepositoryFactory
+    public class SQLiteRepositoryFactory : RepositoryFactory, IRepositoryFactory
     {
         public IUserRepository CreateUserRepository()
         {

@@ -13,10 +13,11 @@ namespace Red.PointOfSale.Commands
         public override void Run()
         {
             string config = ConfigurationManager.AppSettings["repository"];
-            var itemRepo = AbstractRepositoryFactory.GetrepositoryFactory(config).CreateItemRepository();
-            var customerRepo = AbstractRepositoryFactory.GetrepositoryFactory(config).CreateCustomerRepository();
+            var factory = RepositoryFactory.GetRepositoryFactory(config);
+            var itemRepo = factory.CreateItemRepository();
+            var customerRepo = factory.CreateCustomerRepository();
             var controller = new SalesReceiptController(itemRepo, customerRepo);
-            MainForm.Instance.AddChild(controller.Create() as UserControl);
+            ApplicationHelper.Show(controller.Create());
         }
     }
 }

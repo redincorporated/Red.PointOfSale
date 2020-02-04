@@ -31,34 +31,16 @@ namespace Red.PointOfSale.Helpers
         }
     }
     
-    public class ConsoleApplication : IApplication
-    {
-        public void Run()
-        {
-            new CreateSales().Run();
-        }
-        
-        public void Show(IView view)
-        {
-        }
-        
-        void ShowMenu()
-        {
-            Console.Write(@"
-  1 Sales Entry
-  2
-
-> ");
-        }
-    }
-    
     public class WindowsApplication : IApplication
     {
-        public void Run()
+        public WindowsApplication()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+        }
+        
+        public void Run()
+        {
             Application.Run(MainForm.Instance);
         }
         

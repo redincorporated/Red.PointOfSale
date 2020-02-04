@@ -165,7 +165,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AbstractRepository.cs" />
+    <Compile Include="Repositories\RepositoryFactory.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\ICustomerRepository.cs" />
     <Compile Include="Repositories\IItemRepository.cs" />
@@ -185,6 +185,7 @@
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\ISalesReceiptView.cs" />
     <Compile Include="Views\IView.cs" />
+    <Compile Include="Views\ViewFactory.cs" />
     <EmbeddedResource Include="Gui\ConfigurationPane.resx">
       <DependentUpon>ConfigurationPane.cs</DependentUpon>
     </EmbeddedResource>
