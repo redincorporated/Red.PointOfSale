@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D30A35C7-1F8A-4599-80CA-0493E688442C}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Red.PointOfSale</RootNamespace>
     <AssemblyName>pos</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -108,7 +108,9 @@
   <ItemGroup>
     <Compile Include="Commands\AbstractCommand.cs" />
     <Compile Include="Commands\SalesCommands.cs" />
+    <Compile Include="Commands\ToolsCommands.cs" />
     <Compile Include="Commands\UserCommands.cs" />
+    <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\SalesReceiptController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Gui\ConfigurationPane.cs">
@@ -147,6 +149,10 @@
     <Compile Include="Gui\SalesReceiptPane.Designer.cs">
       <DependentUpon>SalesReceiptPane.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gui\SettingsPane.cs" />
+    <Compile Include="Gui\SettingsPane.Designer.cs">
+      <DependentUpon>SettingsPane.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\ConvertHelper.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
@@ -184,6 +190,7 @@
     <Compile Include="Services\Service.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\ISalesReceiptView.cs" />
+    <Compile Include="Views\ISettingsView.cs" />
     <Compile Include="Views\IView.cs" />
     <Compile Include="Views\ViewFactory.cs" />
     <EmbeddedResource Include="Gui\ConfigurationPane.resx">
@@ -200,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\SalesReceiptPane.resx">
       <DependentUpon>SalesReceiptPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\SettingsPane.resx">
+      <DependentUpon>SettingsPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

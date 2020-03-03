@@ -22,6 +22,16 @@ namespace Red.PointOfSale
         {
             InitializeComponent();
         }
+        
+        public DialogResult AddDialog(Control control)
+        {
+            var d = new Form();
+            d.Controls.Clear();
+            control.Dock = DockStyle.Fill;
+            d.Controls.Add(control);
+            
+            return d.ShowDialog();
+        }
 
         public void AddChild(Control control)
         {

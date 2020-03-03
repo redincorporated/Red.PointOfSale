@@ -21,7 +21,7 @@ namespace Red.PointOfSale
             Application.SetCompatibleTextRenderingDefault(false);
             
             ApplicationHelper.Attach(new WindowsApplication());
-            new Login().Run();
+            new ShowSettings().Run();
             ApplicationHelper.Run();
         }
     }

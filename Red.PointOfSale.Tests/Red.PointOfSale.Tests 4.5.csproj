@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomerRepositoryTests.cs" />
     <Compile Include="Repositories\ItemRepositoryTests.cs" />
+    <Compile Include="Services\ServiceTests.cs" />
     <Compile Include="Views\LoginViewTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +84,9 @@
       <Name>Red.PointOfSale 4.5</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="ProfilingSessions\Session20200120_225349.sdps" />
   </ItemGroup>

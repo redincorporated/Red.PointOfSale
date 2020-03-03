@@ -53,9 +53,10 @@ where id = @id";
         public void Save(Item item)
         {
             string query = @"
-insert into items(code, name, description, price)
-values(@code, @name, @description, @price)";
+insert into items(id, code, name, description, price)
+values(@id, @code, @name, @description, @price)";
             ExecuteNonQuery(query
+                , new SQLiteParameter("@id", item.Id)
                 , new SQLiteParameter("@code", item.Code)
                 , new SQLiteParameter("@name", item.Name)
                 , new SQLiteParameter("@description", item.Description)

@@ -14,16 +14,16 @@ using System.ComponentModel;
 
 namespace Red.PointOfSale.Services
 {
-    class Service
+    public class Service
     {
         string url;
         HttpClient client;
-        string apiKey;
+        string token;
 
-        public Service(string url, string apiKey)
+        public Service(string url, string token)
         {
             this.url = url;
-            this.apiKey = apiKey;
+            this.token = token;
             this.client = new HttpClient();
         }
 
@@ -35,7 +35,7 @@ namespace Red.PointOfSale.Services
                 salesItemsObj.Add(new { item_id = i.Item.Id, quantity = i.Quantity, price = i.Price });
             }
             var salesObj = new { id = sales.Id, customer_id = sales.Customer.Id, items = salesItemsObj };
-            var data = ToParameters(new { apikey = apiKey, data = JsonConvert.SerializeObject(salesObj) });
+            var data = ToParameters(new { token = token, data = JsonConvert.SerializeObject(salesObj) });
             var content = new FormUrlEncodedContent(data);
             var response = await client.PostAsync(uri, content);
             if (response.IsSuccessStatusCode) {
@@ -56,7 +56,7 @@ namespace Red.PointOfSale.Services
         {
             var uri = new UriBuilder(url + "/api/get_users");
             var query = HttpUtility.ParseQueryString(uri.Query);
-            query["apikey"] = apiKey;
+            query["token"] = token;
             uri.Query = query.ToString();
             var response = await client.GetAsync(uri.ToString());
             if (response.IsSuccessStatusCode) {
@@ -85,7 +85,7 @@ namespace Red.PointOfSale.Services
         {
             var uri = new UriBuilder(url + "/api/get_items");
             var query = HttpUtility.ParseQueryString(uri.Query);
-            query["apikey"] = apiKey;
+            query["token"] = token;
             uri.Query = query.ToString();
             var response = await client.GetAsync(uri.ToString());
             if (response.IsSuccessStatusCode) {
@@ -97,8 +97,8 @@ namespace Red.PointOfSale.Services
                     foreach (var m in data) {
                         var item = new Item {
                             Id = ConvertHelper.ToInt32(m["id"]),
-                            Code = m["code"].ToString(),
-                            Name = m["name"].ToString(),
+                            Code = GetString(m["code"]),
+                            Name = GetString(m["name"]),
                             Price = ConvertHelper.ToDouble(m["price"])
                         };
                         items.Add(item);
@@ -106,6 +106,11 @@ namespace Red.PointOfSale.Services
                     OnResponseReceived(new Response { Data = items });
                 }
             }
+        }
+        
+        string GetString(object o)
+        {
+            return o != null ? o.ToString() : "";
         }
 
         List<KeyValuePair<string, string>> ToParameters(object obj)
