@@ -99,6 +99,7 @@ namespace Red.PointOfSale.Services
                             Id = ConvertHelper.ToInt32(m["id"]),
                             Code = GetString(m["code"]),
                             Name = GetString(m["name"]),
+                            Description = GetString(m["description"]),
                             Price = ConvertHelper.ToDouble(m["price"])
                         };
                         items.Add(item);
