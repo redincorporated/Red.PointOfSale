@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Red.PointOfSale.Helpers;
 
 namespace Red.PointOfSale
 {
@@ -21,6 +22,7 @@ namespace Red.PointOfSale
         MainForm()
         {
             InitializeComponent();
+            Text = Application.ProductName + " " + ApplicationHelper.GetVersion();
         }
         
         public DialogResult AddDialog(Control control)

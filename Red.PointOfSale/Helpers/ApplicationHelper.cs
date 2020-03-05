@@ -13,6 +13,13 @@ namespace Red.PointOfSale.Helpers
         {
         }
         
+        public static string GetVersion()
+        {
+            return Application.ProductVersion;
+//            var v = new Version(Application.ProductVersion);
+//            return string.Format("{0}.{1}.{2}", v.Major, v.Minor, v.Build);
+        }
+        
         public static void Show(IView view)
         {
             application.Show(view);
