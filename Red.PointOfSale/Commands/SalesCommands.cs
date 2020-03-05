@@ -13,12 +13,13 @@ namespace Red.PointOfSale.Commands
     {
         public override void Run()
         {
-            string repo = ConfigurationManager.AppSettings["sql-repository"];
-            string view = ConfigurationManager.AppSettings["view"];
-            var factory = RepositoryFactory.GetRepositoryFactory(repo);
-            var itemRepo = factory.CreateItemRepository();
-            var customerRepo = factory.CreateCustomerRepository();
-            var salesReceiptView = ViewFactory.GetViewFactory(view).CreateSalesReceiptView();
+            var repoFactory = RepositoryFactory.GetRepositoryFactory();
+            var itemRepo = repoFactory.CreateItemRepository();
+            var customerRepo = repoFactory.CreateCustomerRepository();
+            
+            var viewFactory = ViewFactory.GetViewFactory();
+            var salesReceiptView = viewFactory.CreateSalesReceiptView();
+            
             var controller = new SalesReceiptController(itemRepo, customerRepo, salesReceiptView);
             ApplicationHelper.Show(controller.Create());
         }

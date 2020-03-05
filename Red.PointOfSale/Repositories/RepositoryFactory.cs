@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Red.PointOfSale.Repositories.MySql;
 using Red.PointOfSale.Repositories.SQLite;
 
@@ -11,6 +12,11 @@ namespace Red.PointOfSale.Repositories
         
         public RepositoryFactory()
         {
+        }
+        
+        public static IRepositoryFactory GetRepositoryFactory()
+        {
+            return GetRepositoryFactory(ConfigurationManager.AppSettings["sql-repository"]);
         }
         
         public static IRepositoryFactory GetRepositoryFactory(string type)

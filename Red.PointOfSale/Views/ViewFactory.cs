@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Red.PointOfSale.Gui;
 
 namespace Red.PointOfSale.Views
@@ -9,6 +10,11 @@ namespace Red.PointOfSale.Views
         
         public ViewFactory()
         {
+        }
+        
+        public static IViewFactory GetViewFactory()
+        {
+            return GetViewFactory(ConfigurationManager.AppSettings["view"]);
         }
         
         public static IViewFactory GetViewFactory(string type)
@@ -23,6 +29,7 @@ namespace Red.PointOfSale.Views
     {
         ILoginView CreateLoginView();
         ISalesReceiptView CreateSalesReceiptView();
+        ISettingsView CreateSettingsView();
     }
     
     public class WindowViewFactory : IViewFactory
@@ -35,6 +42,11 @@ namespace Red.PointOfSale.Views
         public ISalesReceiptView CreateSalesReceiptView()
         {
             return new SalesReceiptPane();
+        }
+        
+        public ISettingsView CreateSettingsView()
+        {
+            return new SettingsPane();
         }
     }
 }

@@ -1,5 +1,5 @@
-create database red_pos;
-use red_pos;
+create database red_posclient;
+use red_posclient;
 
 create table items(
 	id integer not null primary key auto_increment,

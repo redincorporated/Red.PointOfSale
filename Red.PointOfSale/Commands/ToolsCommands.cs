@@ -2,8 +2,11 @@
 using System.Windows.Forms;
 using Red.PointOfSale.Controllers;
 using Red.PointOfSale.Gui;
+using Red.PointOfSale.Helpers;
+using Red.PointOfSale.Repositories;
 using Red.PointOfSale.Repositories.MySql;
 using Red.PointOfSale.Repositories.SQLite;
+using Red.PointOfSale.Views;
 
 namespace Red.PointOfSale.Commands
 {
@@ -11,10 +14,14 @@ namespace Red.PointOfSale.Commands
     {
         public override void Run()
         {
-            var v = new SettingsPane();
-            var r = new SQLiteItemRepository();
-            var c = new AppController(v, r);
-            MainForm.Instance.AddDialog(c.Settings() as Control);
+            var repoFactory = RepositoryFactory.GetRepositoryFactory();
+            var itemRepo = repoFactory.CreateItemRepository();
+            
+            var viewFactory = ViewFactory.GetViewFactory();
+            var settingsView = viewFactory.CreateSettingsView();
+            
+            var controller = new AppController(settingsView, itemRepo);
+            ApplicationHelper.Show(controller.Settings());
         }
     }
 }
