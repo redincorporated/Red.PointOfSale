@@ -7,5 +7,6 @@ namespace Red.PointOfSale.Repositories
     public interface IItemDetailRepository : IBaseRepository<ItemDetail>
     {
         List<ItemDetail> FindByItem(int itemId);
+        ItemDetail ReadByCode(string code);
     }
 }

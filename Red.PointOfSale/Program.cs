@@ -22,7 +22,7 @@ namespace Red.PointOfSale
             
             ApplicationHelper.Attach(new WindowsApplication());
             
-            new ShowSettings().Run();
+            new CreateSales().Run();
             ApplicationHelper.Run();
         }
     }

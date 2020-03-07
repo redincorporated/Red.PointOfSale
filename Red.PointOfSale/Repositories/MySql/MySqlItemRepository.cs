@@ -10,12 +10,13 @@ namespace Red.PointOfSale.Repositories.MySql
         {
         }
         
-        public override void Save(Item item)
+        public override int Save(Item item)
         {
             string query = @"
 insert into items(id, name, description)
-values(@id, @name, @description)";
-            ExecuteNonQuery(
+values(@id, @name, @description);
+select last_insert_id();";
+            return (int)ExecuteScalar(
                 query,
                 new MySqlParameter("@id", item.Id),
                 new MySqlParameter("@name", item.Name),

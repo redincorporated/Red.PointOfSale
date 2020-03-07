@@ -11,19 +11,47 @@ namespace Red.PointOfSale.Repositories.MySql
         {
         }
         
-        public override void Save(ItemDetail detail)
+        public ItemDetail ReadByCode(string code)
+        {
+            string query = @"
+select id.stock_no,
+    id.code,
+    id.price,
+    i.id,
+    i.name
+from item_details id
+inner join items i on i.id = id.item_id
+where id.code = @code";
+            ItemDetail detail =  null;
+            using (var rs = ExecuteReader(query, new MySqlParameter("@code", code))) {
+                while (rs.Read()) {
+                    detail = new ItemDetail {
+                        StockNumber = GetString(rs, 0),
+                        Code = GetString(rs, 1),
+                        Price = GetDouble(rs, 2),
+                        Item = new Item {
+                            Id = GetInt32(rs, 3),
+                            Name = GetString(rs, 4)
+                        }
+                    };
+                }
+            }
+            return detail;
+        }
+        
+        public override int Save(ItemDetail detail)
         {
             string query = @"
 insert into item_details(id, item_id, stock_no, code, price)
-values(@id, @item_id, @stock_no, @code, @price)";
-            ExecuteNonQuery(
+values(@id, @item_id, @stock_no, @code, @price);
+select last_insert_id()";
+            return (int)ExecuteScalar(
                 query,
                 new MySqlParameter("@id", detail.Id),
                 new MySqlParameter("@item_id", detail.Item.Id),
                 new MySqlParameter("@stock_no", detail.StockNumber),
                 new MySqlParameter("@code", detail.Code),
-                new MySqlParameter("@price", detail.Price)
-               );
+                new MySqlParameter("@price", detail.Price));
         }
         
         public override ItemDetail Read(int id)
@@ -59,8 +87,7 @@ where id = @id";
                 new MySqlParameter("@item_id", detail.Item.Id),
                 new MySqlParameter("@stock_no", detail.StockNumber),
                 new MySqlParameter("@code", detail.Code),
-                new MySqlParameter("@price", detail.Price)
-               );
+                new MySqlParameter("@price", detail.Price));
         }
         
         public List<ItemDetail> FindByItem(int itemId)

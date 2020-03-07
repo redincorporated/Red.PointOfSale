@@ -3,19 +3,20 @@ using System.Windows.Forms;
 using Red.PointOfSale.Gui;
 using Red.PointOfSale.Models;
 using Red.PointOfSale.Repositories;
+using Red.PointOfSale.Services;
 using Red.PointOfSale.Views;
 
 namespace Red.PointOfSale.Controllers
 {
     public class SalesReceiptController
     {
-        IItemRepository itemRepo;
+        ItemService itemService;
         ICustomerRepository customerRepo;
         ISalesReceiptView salesReceiptView;
 
-        public SalesReceiptController(IItemRepository itemRepo, ICustomerRepository customerRepo, ISalesReceiptView salesReceiptView)
+        public SalesReceiptController(ItemService itemService, ICustomerRepository customerRepo, ISalesReceiptView salesReceiptView)
         {
-            this.itemRepo = itemRepo;
+            this.itemService = itemService;
             this.customerRepo = customerRepo;
             this.salesReceiptView = salesReceiptView;
         }
@@ -23,9 +24,9 @@ namespace Red.PointOfSale.Controllers
         public IView Create()
         {
             salesReceiptView.ItemSearch += delegate(object sender, ItemEventArgs e) { 
-                var item = itemRepo.ReadByCode(e.Item.Code);
-                if (item != null) {
-                    salesReceiptView.AddItem(item);
+                var itemDetail = itemService.ReadByCode(e.Item.Code);
+                if (itemDetail != null) {
+                    salesReceiptView.AddItem(itemDetail.Item);
                 } else {
                     
                 }

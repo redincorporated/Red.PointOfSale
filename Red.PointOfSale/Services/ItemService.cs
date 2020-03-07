@@ -16,6 +16,11 @@ namespace Red.PointOfSale.Services
             this.itemDetailRepo = itemDetailRepo;
         }
         
+        public ItemDetail ReadByCode(string code)
+        {
+            return itemDetailRepo.ReadByCode(code);
+        }
+        
         public void Save(List<Item> items)
         {
             foreach (var item in items) {
