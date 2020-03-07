@@ -171,6 +171,8 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IItemDetailRepository.cs" />
+    <Compile Include="Repositories\MySql\MySqlItemDetailRepository.cs" />
     <Compile Include="Repositories\RepositoryFactory.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\ICustomerRepository.cs" />
@@ -186,8 +188,9 @@
     <Compile Include="Repositories\SQLite\SQLiteItemRepository.cs" />
     <Compile Include="Repositories\SQLite\SQLiteSalesReceiptRepository.cs" />
     <Compile Include="Repositories\SQLite\SQLiteUserRepository.cs" />
+    <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\SalesReceiptService.cs" />
-    <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\ApiService.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\ISalesReceiptView.cs" />
     <Compile Include="Views\ISettingsView.cs" />

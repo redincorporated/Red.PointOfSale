@@ -34,7 +34,7 @@ namespace Red.PointOfSale.Gui
             }
         }
 
-        Service service = new Service(ConfigurationManager.AppSettings["pos-backend-url"], ConfigurationManager.AppSettings["pos-backend-apikey"]);
+        ApiService service = new ApiService(ConfigurationManager.AppSettings["pos-backend-url"], ConfigurationManager.AppSettings["pos-backend-apikey"]);
 
         private void button1_Click(object sender, EventArgs e)
         {

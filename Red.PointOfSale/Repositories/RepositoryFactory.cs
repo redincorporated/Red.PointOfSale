@@ -32,6 +32,7 @@ namespace Red.PointOfSale.Repositories
     {
         IUserRepository CreateUserRepository();
         IItemRepository CreateItemRepository();
+        IItemDetailRepository CreateItemDetailRepository();
         ICustomerRepository CreateCustomerRepository();
     }
     
@@ -45,6 +46,11 @@ namespace Red.PointOfSale.Repositories
         public IItemRepository CreateItemRepository()
         {
             return new MySqlItemRepository();
+        }
+        
+        public IItemDetailRepository CreateItemDetailRepository()
+        {
+            return new MySqlItemDetailRepository();
         }
         
         public ICustomerRepository CreateCustomerRepository()
@@ -63,6 +69,11 @@ namespace Red.PointOfSale.Repositories
         public IItemRepository CreateItemRepository()
         {
             return new SQLiteItemRepository();
+        }
+        
+        public IItemDetailRepository CreateItemDetailRepository()
+        {
+            throw new NotImplementedException();
         }
         
         public ICustomerRepository CreateCustomerRepository()

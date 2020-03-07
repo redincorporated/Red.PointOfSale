@@ -8,14 +8,14 @@ namespace Red.PointOfSale.Tests.Services
     [TestFixture]
     public class ServiceTests
     {
-        Service service;
+        ApiService service;
         
         [SetUp]
         public void Setup()
         {
             string url = "http://pos-backend.scoollabs.com";
             string token = "BE823A6D-3D07-4134-B5F1-3364AF19FC81";
-            service = new Service(url, token);
+            service = new ApiService(url, token);
         }
         
         [Test]
