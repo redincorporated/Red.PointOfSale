@@ -42,3 +42,11 @@ create table item_departments(
 	id integer not null primary key auto_increment,
 	name varchar(255)
 );
+
+create table item_details(
+	id integer not null primary key auto_increment,
+	item_id integer,
+	stock_no varchar(255),
+	code varchar(255),
+	price double
+);

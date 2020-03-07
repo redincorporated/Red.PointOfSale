@@ -14,13 +14,13 @@ using System.ComponentModel;
 
 namespace Red.PointOfSale.Services
 {
-    public class Service
+    public class ApiService
     {
         string url;
         HttpClient client;
         string token;
 
-        public Service(string url, string token)
+        public ApiService(string url, string token)
         {
             this.url = url;
             this.token = token;
@@ -92,16 +92,25 @@ namespace Red.PointOfSale.Services
                 var responseContent = await response.Content.ReadAsStringAsync();
                 JObject o = JObject.Parse(responseContent);
                 if (o["message"].ToString() == "OK") {
-                    JArray data = JArray.Parse(o["data"].ToString());
+                    JArray itemsArray = JArray.Parse(o["data"].ToString());
                     var items = new List<Item>();
-                    foreach (var m in data) {
+                    foreach (var itemArray in itemsArray) {
                         var item = new Item {
-                            Id = ConvertHelper.ToInt32(m["id"]),
-                            Code = GetString(m["code"]),
-                            Name = GetString(m["name"]),
-                            Description = GetString(m["description"]),
-                            Price = ConvertHelper.ToDouble(m["price"])
+                            Id = ConvertHelper.ToInt32(itemArray["id"]),
+                            Code = GetString(itemArray["code"]),
+                            Name = GetString(itemArray["name"]),
+                            Description = GetString(itemArray["description"]),
+                            Price = ConvertHelper.ToDouble(itemArray["price"]),
                         };
+                        JArray detailsArray = JArray.Parse(itemArray["details"].ToString());
+                        foreach (var detailArray in detailsArray) {
+                            var detail = new ItemDetail {
+                                Id = ConvertHelper.ToInt32(detailArray["id"]),
+                                StockNumber = GetString(detailArray["stock_no"]),
+                                Code = GetString(detailArray["code"]),
+                            };
+                            item.AddDetail(detail);
+                        }
                         items.Add(item);
                     }
                     OnResponseReceived(new Response { Data = items });
