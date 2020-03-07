@@ -6,7 +6,7 @@ namespace Red.PointOfSale.Repositories
 {
     public interface IBaseRepository<T>
     {
-        void Save(T t);
+        int Save(T t);
         void Update(T t, int id);
         void Delete(int id);
         T Read(int id);
@@ -22,8 +22,9 @@ namespace Red.PointOfSale.Repositories
             this.conn = conn;
         }
         
-        public virtual void Save(T t)
+        public virtual int Save(T t)
         {
+            throw new NotImplementedException();
         }
         
         public virtual void Update(T t, int id)

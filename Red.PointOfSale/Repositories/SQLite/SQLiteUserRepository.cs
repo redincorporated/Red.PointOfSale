@@ -54,17 +54,19 @@ where username = @username";
             return u;
         }
 
-        public override void Save(User user)
+        public override int Save(User user)
         {
             string query = @"
 insert into users(username, password, email, name, phone)
-values(@username, @password, @email, @name, @phone)";
-            ExecuteNonQuery(query
-                , new SQLiteParameter("@username", user.Username)
-                , new SQLiteParameter("@password", user.Password)
-                , new SQLiteParameter("@email", user.Email)
-                , new SQLiteParameter("@name", user.Name)
-                , new SQLiteParameter("@phone", user.Phone));
+values(@username, @password, @email, @name, @phone);
+select last_insert_rowid()";
+            return (int)ExecuteScalar(
+                query,
+                new SQLiteParameter("@username", user.Username),
+                new SQLiteParameter("@password", user.Password),
+                new SQLiteParameter("@email", user.Email),
+                new SQLiteParameter("@name", user.Name),
+                new SQLiteParameter("@phone", user.Phone));
         }
 
         public override void Update(User user, int id)
